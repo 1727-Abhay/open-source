@@ -1,0 +1,14 @@
+steps:
+  - label: "Build & Test"
+    command: 
+      - "docker build -t myapp ."
+      - "docker run myapp test"
+    agents:
+      queue: "default"
+
+  - label: "Deploy"
+    command: "./deploy.sh"
+    agents:
+      queue: "default"
+    depends_on: "Build & Test"
+
